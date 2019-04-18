@@ -5,11 +5,11 @@ Vue.component('link_it-fieldtype', {
     template: `
         <div>
             <div class="flex flex-wrap items-center">
-                <select-fieldtype class="w-1/5" :data.sync="data.type" :name="type" :options="options"></select-fieldtype>
-                <select-fieldtype v-show="data.type === 'taxonomy'" class="ml-2 w-1/5" :data.sync="data.taxonomy" name="taxonomy" :options="taxonomies"></select-fieldtype>
-                <select-fieldtype v-show="data.type === 'asset'" class="ml-2 w-1/5" :data.sync="data.container" name="container" :options="containers"></select-fieldtype>
-                <select-fieldtype v-show="data.type === 'collection'" class="ml-2 w-1/5" :data.sync="data.collection" name="collection" :options="collections"></select-fieldtype>
-                <text-fieldtype v-show="['url', 'custom', 'email', 'tel'].indexOf(data.type) !== -1" :class="[config.newWindow ? 'mx-2' : 'ml-2']" class="flex-1" :data.sync="data.url" :config="{ mode: 'text', placeholder: urlPlaceholder, required: config.required }"></text-fieldtype>
+                <select-fieldtype class="w-1/5" :data.sync="data.type" :name="type" :options="types"></select-fieldtype>
+                <select-fieldtype v-if="data.type === 'term'" class="ml-2 w-1/5" :data.sync="data.taxonomy" name="taxonomy" :options="taxonomies"></select-fieldtype>
+                <select-fieldtype v-if="data.type === 'asset'" class="ml-2 w-1/5" :data.sync="data.container" name="container" :options="containers"></select-fieldtype>
+                <select-fieldtype v-if="data.type === 'entry'" class="ml-2 w-1/5" :data.sync="data.collection" name="collection" :options="collections"></select-fieldtype>
+                <text-fieldtype v-if="['url', 'custom', 'email', 'tel'].indexOf(data.type) !== -1" :class="[config.newWindow ? 'mx-2' : 'ml-2']" class="flex-1" :data.sync="data.url" :config="{ mode: 'text', placeholder: urlPlaceholder, required: config.required }"></text-fieldtype>
                 
                 <div v-if="config.newWindow" class="ml-auto w-1/4 text-right">
                     <input type="checkbox"
@@ -18,11 +18,11 @@ Vue.component('link_it-fieldtype', {
                            :value="true"
                            v-model="data.newWindow"
                     />
-                    <label for="newWindow">Open in new window?</label>
+                    <label for="newWindow">{{ translate('Open in a new window?') }}</label>
                 </div>
             </div>
             <assets-fieldtype 
-                v-show="data.type === 'asset' && data.container"
+                v-if="data.type === 'asset' && data.container"
                 class="mt-2"
                 :data.sync="data.asset"
                 :config="{
@@ -34,7 +34,7 @@ Vue.component('link_it-fieldtype', {
             <taxonomy-fieldtype
                 class="mt-2"
                 v-for="taxonomy in taxonomies"
-                v-if="data.type === 'taxonomy' && data.taxonomy === taxonomy.value"
+                v-if="data.type === 'term' && data.taxonomy === taxonomy.value"
                 :data.sync="data.term"
                 :config.sync="{
                     max_items: 1,
@@ -54,7 +54,7 @@ Vue.component('link_it-fieldtype', {
             <collection-fieldtype
                 class="mt-2"
                 v-for="collection in collections"
-                v-if="data.type === 'collection' && data.collection === collection.value"
+                v-if="data.type === 'entry' && data.collection === collection.value"
                 :data.sync="data.entry"
                 :config.sync="{
                     max_items: 1,
@@ -63,16 +63,16 @@ Vue.component('link_it-fieldtype', {
                 }"
             ></collection-fieldtype>
             <div v-if="config.text" class="flex items-center mt-2">
-                <label class="w-1/6" for="text">Custom Link Text</label>
-                <text-fieldtype class="ml-2" :data.sync="data.text" :config="{ mode: 'text', placeholder: 'Read more' }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="text">{{ translate('Custom Link Text') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.text" :config="{ mode: 'text', placeholder: translate('Read more') }"></text-fieldtype>
             </div>
             <div v-if="config.aria" class="flex items-center mt-2">
-                <label class="w-1/6" for="aria">Aria</label>
-                <text-fieldtype class="ml-2" :data.sync="data.aria" :config="{ mode: 'text', placeholder: 'Read more about this' }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="aria">{{ translate('Aria') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.aria" :config="{ mode: 'text', placeholder: translate('Read more about this') }"></text-fieldtype>
             </div>
             <div v-if="config.title" class="flex items-center mt-2">
-                <label class="w-1/6" for="title">Title</label>
-                <text-fieldtype class="ml-2" :data.sync="data.title" :config="{ mode: 'text', placeholder: 'Link title' }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="title">{{ translate('Title') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.title" :config="{ mode: 'text', placeholder: translate('Link title') }"></text-fieldtype>
             </div>
         </div>
     `,
@@ -102,36 +102,48 @@ Vue.component('link_it-fieldtype', {
     },
 
     computed: {
-        options: function () {
-            let options = this.config.types || [
+        types: function () {
+            let types = this.config.types || [
                 'asset',
-                'collection',
+                'entry',
                 'custom',
                 'email',
                 'page',
-                'taxonomy',
+                'term',
                 'tel',
                 'url',
             ];
 
-            return options.map(function (option) {
-                return { text: translate(option), value: option }
+            if (this.containers.length === 0 && types.indexOf('asset') !== -1) {
+                types.splice(types.indexOf('asset'), 1);
+            }
+
+            if (this.collections.length === 0 && types.indexOf('entry') !== -1) {
+                types.splice(types.indexOf('entry'), 1);
+            }
+
+            if (this.taxonomies.length === 0 && types.indexOf('term') !== -1) {
+                types.splice(types.indexOf('term'), 1);
+            }
+
+            return types.map(function (type) {
+                return { text: translate(type), value: type }
             });
         },
         taxonomies: function () {
-            return this.data.taxonomies.map(function (taxonomy) {
+            return this.config.taxonomies ? _.map(this.config.taxonomies, function (taxonomy) {
                 return { value: taxonomy, text: translate(taxonomy) };
-            });
+            }) : [];
         },
         containers: function () {
-            return this.data.containers.map(function (container) {
+            return this.config.containers ? _.map(this.config.containers, function (container) {
                 return { value: container, text: translate(container) };
-            });
+            }) : [];
         },
         collections: function () {
-            return this.data.collections.map(function (collection) {
+            return this.config.collections ? _.map(this.config.collections, function (collection) {
                 return { value: collection, text: translate(collection) };
-            });
+            }) : [];
         },
         urlPlaceholder: function () {
             switch (this.data.type) {
@@ -142,7 +154,7 @@ Vue.component('link_it-fieldtype', {
                 case 'tel':
                     return '+1 123 456 789';
                 case 'custom':
-                    return '#maybe-an-anchor';
+                    return translate('#maybe-an-anchor');
             }
 
             return '';
@@ -150,6 +162,11 @@ Vue.component('link_it-fieldtype', {
     },
 
     methods: {
+        getReplicatorPreviewText() {
+            if (! this.data) return;
+
+            return translate(this.data.type);
+        },
     },
 
     ready: function () {

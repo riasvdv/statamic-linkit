@@ -20,30 +20,63 @@ fields:
 ```
 
 Content editors can then choose from all the following types:
-- url
+
+### Url
 ![url](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/url.png)
 
-- custom
+### Custom
 ![custom](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/custom.png)
 
-- email
+### Email
 ![email](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/email.png)
 
-- tel
+### Tel
 ![tel](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/tel.png)
 
-- asset
+### Asset
 ![asset](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/asset.png)
 
-- taxonomy
-![taxonomy](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/taxonomy.png)
+#### Containers
+`array` - You have to define the asset containers in the field settings to use this type.
 
-- page
+```yaml
+fields:
+  link:
+    type: link_it
+    containers:
+      - documents
+```
+
+### Term
+![term](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/term.png)
+
+#### Taxonomies
+`array` - You have to define the taxonomies in the field settings to use this type.
+
+```yaml
+fields:
+  link:
+    type: link_it
+    taxonomies:
+      - blog_categories
+```
+
+### Page
 ![page](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/page.png)
 
-- collection
-![collection](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/collection.png)
+### Entry
+![entry](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/entry.png)
 
+#### Collections
+`array` - You have to define the collections in the field settings to use this type.
+
+```yaml
+fields:
+  link:
+    type: link_it
+    collections:
+      - blog
+```
 
 You can configure which types are allowed by adding a `types` setting to your fieldtype.
 
@@ -69,17 +102,31 @@ fields:
     type: link_it
     types:
       - asset
-      - collection
+      - entry
       - custom
       - email
       - page
-      - taxonomy
+      - term
       - tel
       - url
 ```
 
+To use the `asset`, `entry` and `term` types, please make sure you define the corresponding `containers`, `collections` and `taxonomies` settings.
+
+### Default
+`string` - Which type is selected by default
+
+```yaml
+fields:
+  link:
+    type: link_it
+    default: url
+```
+
 ### NewWindow
 `bool` - Whether to give the choice to have links opened in a new window.
+
+![New Window](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/new-window.png)
 
 ```yaml
 fields:
@@ -91,6 +138,8 @@ fields:
 ### Text
 `bool` - Whether to allow a custom link text. (For example "Read more")
 
+![Text](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/text.png)
+
 ```yaml
 fields:
   link:
@@ -100,6 +149,8 @@ fields:
 
 ### Aria
 `bool` - Whether to allow control over the `aria-label`.
+
+![Aria](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/aria.png)
 
 ```yaml
 fields:
@@ -111,44 +162,13 @@ fields:
 ### Title
 `bool` - Whether to allow control over the link `title`.
 
+![Title](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/title.png)
+
 ```yaml
 fields:
   link:
     type: link_it
     title: false
-```
-
-### Collections
-`array` - By default, all collections can be chosen from the dropdown to link to. This allows you to limit them.
-
-```yaml
-fields:
-  link:
-    type: link_it
-    collections:
-      - blog
-```
-
-### Containers
-`array` - By default, all asset containers can be chosen from the dropdown to link to. This allows you to limit them.
-
-```yaml
-fields:
-  link:
-    type: link_it
-    containers:
-      - documents
-```
-
-### Taxonomies
-`array` - By default, all taxonomies can be chosen from the dropdown to link to. This allows you to limit them.
-
-```yaml
-fields:
-  link:
-    type: link_it
-    taxonomies:
-      - blog_categories
 ```
 
 ## The modifier
