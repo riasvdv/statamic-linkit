@@ -1,9 +1,9 @@
-# Installing
+## Installing
 
 - Unzip and place the LinkIt directory into /site/addons.
 - You're done!
 
-# Usage
+## Usage
 
 Add the fieldtype to your fieldset by using the `link_it` handle. The most basic configuration is the following:
 
@@ -15,19 +15,19 @@ fields:
 
 Content editors can then choose from all the following types:
 
-## Url
+### Url
 ![url](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/url.png)
 
-## Custom
+### Custom
 ![custom](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/custom.png)
 
-## Email
+### Email
 ![email](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/email.png)
 
-## Tel
+### Tel
 ![tel](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/tel.png)
 
-## Asset
+### Asset
 ![asset](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/asset.png)
 
 **Containers**
@@ -41,7 +41,7 @@ fields:
       - documents
 ```
 
-## Term
+### Term
 ![term](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/term.png)
 
 **Taxonomies**
@@ -55,10 +55,10 @@ fields:
       - blog_categories
 ```
 
-## Page
+### Page
 ![page](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/page.png)
 
-## Entry
+### Entry
 ![entry](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/entry.png)
 
 **Collections**
@@ -74,10 +74,10 @@ fields:
 
 You can configure which types are allowed by adding a `types` setting to your fieldtype.
 
-# Settings
+## Settings
 This fieldtype supports the following settings. The default value is shown in the example.
 
-## Required
+### Required
 `bool` - Whether this field is required
 
 ```yaml
@@ -87,7 +87,7 @@ fields:
     required: false
 ```
 
-## Types
+### Types
 `array` - A set of types which content managers can choose from.
 
 ```yaml
@@ -107,7 +107,7 @@ fields:
 
 To use the `asset`, `entry` and `term` types, please make sure you define the corresponding `containers`, `collections` and `taxonomies` settings.
 
-## Default
+### Default
 `string` - Which type is selected by default
 
 ```yaml
@@ -117,7 +117,7 @@ fields:
     default: url
 ```
 
-## NewWindow
+### NewWindow
 `bool` - Whether to give the choice to have links opened in a new window.
 
 ![New Window](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/new-window.png)
@@ -129,7 +129,7 @@ fields:
     newWindow: false
 ```
 
-## Text
+### Text
 `bool` - Whether to allow a custom link text. (For example "Read more")
 
 ![Text](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/text.png)
@@ -141,7 +141,7 @@ fields:
     text: false
 ```
 
-## Aria
+### Aria
 `bool` - Whether to allow control over the `aria-label`.
 
 ![Aria](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/aria.png)
@@ -153,7 +153,7 @@ fields:
     aria: false
 ```
 
-## Title
+### Title
 `bool` - Whether to allow control over the link `title`.
 
 ![Title](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/title.png)
@@ -165,36 +165,36 @@ fields:
     title: false
 ```
 
-# The modifier
+## The modifier
 
 For easy usage, LinkIt comes with a modifier to generate a link tag or extract the necessary information.
 
-## Generate a link tag
+### Generate a link tag
 ```
 {{ link | link_it }}
 ```
 
-## Get the link target
+### Get the link target
 ```
 {{ link | link_it:target }}
 ```
 
-## Get the link text
+### Get the link text
 ```
 {{ link | link_it:text }}
 ```
 
-## Get the link url
+### Get the link url
 ```
 {{ link | link_it:url }}
 ```
 
-## Get the link title
+### Get the link title
 ```
 {{ link | link_it:title }}
 ```
 
-## Get the link aria label
+### Get the link aria label
 ```
 {{ link | link_it:aria }}
 ```
