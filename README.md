@@ -13,7 +13,7 @@ A fieldtype to link to anything.
 ## License
 
 LinkIt requires a license to be used while on a production site.  
-You can purchase one at https://statamic.com/marketplace/addons/position-fieldtype.
+You can purchase one at https://statamic.com/marketplace/addons/link-it.
 
 You may use LinkIt without a license while Statamic is in [Trial mode](https://docs.statamic.com/knowledge-base/trial-mode).
 
