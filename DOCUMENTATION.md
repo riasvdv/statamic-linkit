@@ -19,18 +19,31 @@ fields:
     type: link_it
 ```
 
-This produces the following field:
-![Screenshot](./resources/assets/img/no_config.png)
-
 Content editors can then choose from all the following types:
 - url
+![url](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/url.png)
+
 - custom
+![custom](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/custom.png)
+
 - email
+![email](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/email.png)
+
 - tel
+![tel](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/tel.png)
+
 - asset
+![asset](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/asset.png)
+
 - taxonomy
+![taxonomy](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/taxonomy.png)
+
 - page
+![page](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/page.png)
+
 - collection
+![collection](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/collection.png)
+
 
 You can configure which types are allowed by adding a `types` setting to your fieldtype.
 

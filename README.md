@@ -1,14 +1,14 @@
 ![Icon](icon.svg)
 
-[![Latest Version](https://img.shields.io/github/release/rias500/statamic-link-it.svg?style=flat-square)](https://github.com/rias500/statamic-link-it/releases)
-[![Quality Score](https://img.shields.io/scrutinizer/g/rias500/statamic-link-it.svg?style=flat-square)](https://scrutinizer-ci.com/g/rias500/statamic-link-it)
+[![Latest Version](https://img.shields.io/github/release/rias500/statamic-linkit.svg?style=flat-square)](https://github.com/rias500/statamic-linkit/releases)
+[![Quality Score](https://img.shields.io/scrutinizer/g/rias500/statamic-linkit.svg?style=flat-square)](https://scrutinizer-ci.com/g/rias500/statamic-linkit)
 [![StyleCI](https://styleci.io/repos/181859139/shield)](https://styleci.io/repos/181859139)
 
 # LinkIt plugin for Statamic
 
 A fieldtype to link to anything.
 
-![Screenshot](./resources/assets/img/screenshot.png)
+![Screenshot](https://github.com/Rias500/statamic-linkit/raw/master/resources/assets/img/screenshot.png)
 
 ## License
 
