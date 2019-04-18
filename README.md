@@ -23,6 +23,6 @@ To install the plugin, download the plugin and place it in your `site/addons` fo
 
 ## Using LinkIt
 
-[Read the documentation](./DOCUMENTATION.md)
+[Read the documentation](https://github.com/Rias500/statamic-linkit/blob/master/DOCUMENTATION.md)
 
 Brought to you by [Rias](https://rias.be)
