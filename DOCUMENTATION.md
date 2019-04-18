@@ -108,13 +108,14 @@ fields:
 To use the `asset`, `entry` and `term` types, please make sure you define the corresponding `containers`, `collections` and `taxonomies` settings.
 
 ### Default
-`string` - Which type is selected by default
+`object` - Set default values, for example a default type.
 
 ```yaml
 fields:
   link:
     type: link_it
-    default: url
+    default:
+      type: url
 ```
 
 ### NewWindow
