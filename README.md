@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/release/rias500/statamic-linkit.svg?style=flat-square)](https://github.com/rias500/statamic-linkit/releases)
 [![Quality Score](https://img.shields.io/scrutinizer/g/rias500/statamic-linkit.svg?style=flat-square)](https://scrutinizer-ci.com/g/rias500/statamic-linkit)
-[![StyleCI](https://styleci.io/repos/181859139/shield)](https://styleci.io/repos/181859139)
+[![StyleCI](https://styleci.io/repos/182076674/shield)](https://styleci.io/repos/182076674)
 
 # LinkIt plugin for Statamic
 
