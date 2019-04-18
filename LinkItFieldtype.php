@@ -2,7 +2,6 @@
 
 namespace Statamic\Addons\LinkIt;
 
-use Statamic\API\AssetContainer;
 use Statamic\API\Collection;
 use Statamic\API\Taxonomy;
 use Statamic\Extend\Fieldtype;

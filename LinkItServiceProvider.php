@@ -2,8 +2,8 @@
 
 namespace Statamic\Addons\LinkIt;
 
-use Statamic\Extend\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Statamic\Extend\ServiceProvider;
 
 class LinkItServiceProvider extends ServiceProvider
 {
@@ -27,11 +27,13 @@ class LinkItServiceProvider extends ServiceProvider
 
                         if ($required && empty($value['url'])) {
                             $validator->errors()->add($attribute, 'Url is required');
+
                             return true;
                         }
 
                         if (!$this->validateUrl($value['url'])) {
                             $validator->errors()->add($attribute, 'Please enter a valid url');
+
                             return true;
                         }
                         break;
@@ -42,11 +44,13 @@ class LinkItServiceProvider extends ServiceProvider
 
                         if ($required && empty($value['url'])) {
                             $validator->errors()->add($attribute, 'Email is required');
+
                             return true;
                         }
 
                         if (filter_var($value['url'], FILTER_VALIDATE_EMAIL) === false) {
                             $validator->errors()->add($attribute, 'Please enter a valid email address');
+
                             return true;
                         }
                         break;
@@ -60,6 +64,7 @@ class LinkItServiceProvider extends ServiceProvider
                             )
                         ) {
                             $validator->errors()->add($attribute, 'Link field is required');
+
                             return true;
                         }
                         break;
@@ -73,12 +78,13 @@ class LinkItServiceProvider extends ServiceProvider
     /**
      * Validate that an attribute is a valid URL.
      *
-     * @param  mixed   $value
+     * @param mixed $value
+     *
      * @return bool
      */
     protected function validateUrl($value)
     {
-        if (! is_string($value)) {
+        if (!is_string($value)) {
             return false;
         }
         /*
@@ -101,6 +107,7 @@ class LinkItServiceProvider extends ServiceProvider
             (:[0-9]+)?                              # a port (optional)
             (/?|/\S+|\?\S*|\#\S*)                   # a /, nothing, a / with something, a query or a fragment
         $~ixu';
+
         return preg_match($pattern, $value) > 0;
     }
 }
