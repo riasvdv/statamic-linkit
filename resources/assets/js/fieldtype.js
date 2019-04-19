@@ -18,7 +18,7 @@ Vue.component('link_it-fieldtype', {
                            :value="true"
                            v-model="data.newWindow"
                     />
-                    <label for="newWindow">{{ translate('Open in a new window?') }}</label>
+                    <label for="newWindow">{{ translate('addons.LinkIt::fieldtype.new_window') }}</label>
                 </div>
             </div>
             <assets-fieldtype 
@@ -63,16 +63,16 @@ Vue.component('link_it-fieldtype', {
                 }"
             ></collection-fieldtype>
             <div v-if="config.text" class="flex items-center mt-2">
-                <label class="w-1/5 flex-no-shrink" for="text">{{ translate('Custom Link Text') }}</label>
-                <text-fieldtype class="ml-2" :data.sync="data.text" :config="{ mode: 'text', placeholder: translate('Read more') }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="text">{{ translate('addons.LinkIt::fieldtype.text_label') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.text" :config="{ mode: 'text', placeholder: translate('addons.LinkIt::fieldtype.text_placeholder') }"></text-fieldtype>
             </div>
             <div v-if="config.aria" class="flex items-center mt-2">
-                <label class="w-1/5 flex-no-shrink" for="aria">{{ translate('Aria') }}</label>
-                <text-fieldtype class="ml-2" :data.sync="data.aria" :config="{ mode: 'text', placeholder: translate('Read more about this') }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="aria">{{ translate('addons.LinkIt::fieldtype.aria_label') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.aria" :config="{ mode: 'text', placeholder: translate('addons.LinkIt::fieldtype.aria_placeholder') }"></text-fieldtype>
             </div>
             <div v-if="config.title" class="flex items-center mt-2">
-                <label class="w-1/5 flex-no-shrink" for="title">{{ translate('Title') }}</label>
-                <text-fieldtype class="ml-2" :data.sync="data.title" :config="{ mode: 'text', placeholder: translate('Link title') }"></text-fieldtype>
+                <label class="w-1/5 flex-no-shrink" for="title">{{ translate('addons.LinkIt::fieldtype.title_label') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.title" :config="{ mode: 'text', placeholder: translate('addons.LinkIt::fieldtype.title_placeholder') }"></text-fieldtype>
             </div>
         </div>
     `,
@@ -148,13 +148,13 @@ Vue.component('link_it-fieldtype', {
         urlPlaceholder: function () {
             switch (this.data.type) {
                 case 'email':
-                    return 'john@example.com';
+                    return translate('addons.LinkIt::fieldtype.email_placeholder');
                 case 'url':
-                    return 'https://example.com';
+                    return translate('addons.LinkIt::fieldtype.url_placeholder');
                 case 'tel':
-                    return '+1 123 456 789';
+                    return translate('addons.LinkIt::fieldtype.tel_placeholder');
                 case 'custom':
-                    return translate('#maybe-an-anchor');
+                    return translate('addons.LinkIt::fieldtype.custom_placeholder');
             }
 
             return '';
@@ -165,7 +165,7 @@ Vue.component('link_it-fieldtype', {
         getReplicatorPreviewText() {
             if (! this.data) return;
 
-            return translate(this.data.type);
+            return translate('addons.LinkIt::fieldtype.' + this.data.type);
         },
     },
 

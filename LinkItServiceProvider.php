@@ -26,13 +26,13 @@ class LinkItServiceProvider extends ServiceProvider
                         }
 
                         if ($required && empty($value['url'])) {
-                            $validator->errors()->add($attribute, 'Url is required');
+                            $validator->errors()->add($attribute, trans('addons.LinkIt::messages.required', ['attribute' => trans('addons.LinkIt::fieldtype.url')]));
 
                             return true;
                         }
 
                         if (!$this->validateUrl($value['url'])) {
-                            $validator->errors()->add($attribute, 'Please enter a valid url');
+                            $validator->errors()->add($attribute, trans('addons.LinkIt::messages.url', ['attribute' => trans('addons.LinkIt::fieldtype.url')]));
 
                             return true;
                         }
@@ -43,13 +43,13 @@ class LinkItServiceProvider extends ServiceProvider
                         }
 
                         if ($required && empty($value['url'])) {
-                            $validator->errors()->add($attribute, 'Email is required');
+                            $validator->errors()->add($attribute, trans('addons.LinkIt::messages.required', ['attribute' => trans('addons.LinkIt::fieldtype.email')]));
 
                             return true;
                         }
 
                         if (filter_var($value['url'], FILTER_VALIDATE_EMAIL) === false) {
-                            $validator->errors()->add($attribute, 'Please enter a valid email address');
+                            $validator->errors()->add($attribute, trans('addons.LinkIt::messages.email', ['attribute' => trans('addons.LinkIt::fieldtype.email')]));
 
                             return true;
                         }
@@ -63,7 +63,7 @@ class LinkItServiceProvider extends ServiceProvider
                                 && empty($value['entry'])
                             )
                         ) {
-                            $validator->errors()->add($attribute, 'Link field is required');
+                            $validator->errors()->add($attribute, trans('addons.LinkIt::messages.required', ['attribute' => 'LinkIt']));
 
                             return true;
                         }
