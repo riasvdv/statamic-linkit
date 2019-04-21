@@ -8,6 +8,8 @@ return [
     'aria_placeholder'   => 'Read more about this subject',
     'title_label'        => 'Link title',
     'title_placeholder'  => 'A link title',
+    'append_label'       => 'Append',
+    'append_placeholder'  => '?query=value',
     'email_placeholder'  => 'john@example.com',
     'url_placeholder'    => 'https://rias.be',
     'tel_placeholder'    => '+1 123 456 789',

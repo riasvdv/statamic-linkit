@@ -95,27 +95,29 @@ class LinkItModifier extends Modifier
 
     protected function getUrl($link)
     {
+        $url = '';
+
         if (isset($link['url'])) {
-            return $link['url'];
+            $url = $link['url'];
         }
 
         if (isset($link['asset'])) {
-            return Asset::find($link['asset'][0])->url();
+            $url = Asset::find($link['asset'][0])->url();
         }
 
         if (isset($link['term'])) {
-            return Term::find($link['term'][0])->url();
+            $url = Term::find($link['term'][0])->url();
         }
 
         if (isset($link['page'])) {
-            return Page::find($link['page'][0])->url();
+            $url = Page::find($link['page'][0])->url();
         }
 
         if (isset($link['entry'])) {
-            return Entry::find($link['entry'][0])->url();
+            $url = Entry::find($link['entry'][0])->url();
         }
 
-        return '';
+        return $url . ($link['append'] ?? '');
     }
 
     protected function getTarget($link)

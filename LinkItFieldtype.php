@@ -50,6 +50,7 @@ class LinkItFieldtype extends Fieldtype
                 'text',
                 'aria',
                 'title',
+                'append',
             ]));
         }
 

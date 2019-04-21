@@ -19,7 +19,9 @@ You may use LinkIt without a license while Statamic is in [Trial mode](https://d
 
 ## Installation
 
-To install the plugin, download the plugin and place it in your `site/addons` folder. Make sure the folder is named `LinkIt`.
+- Unzip and place the LinkIt directory into /site/addons.
+- Run `php please update:addons`
+- You're done!
 
 ## Using LinkIt
 

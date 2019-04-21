@@ -6,6 +6,8 @@ return [
     'text_placeholder'   => 'Lees meer',
     'aria_label'         => 'Aria label',
     'aria_placeholder'   => 'Lees meer over dit onderwerp',
+    'append_label'        => 'Toevoeging (achteraan)',
+    'append_placeholder'  => '?query=value',
     'title_label'        => 'Link titel',
     'title_placeholder'  => 'Een link titel',
     'email_placeholder'  => 'john@example.com',

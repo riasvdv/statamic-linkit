@@ -74,6 +74,10 @@ Vue.component('link_it-fieldtype', {
                 <label class="w-1/5 flex-no-shrink" for="title">{{ translate('addons.LinkIt::fieldtype.title_label') }}</label>
                 <text-fieldtype class="ml-2" :data.sync="data.title" :config="{ mode: 'text', placeholder: translate('addons.LinkIt::fieldtype.title_placeholder') }"></text-fieldtype>
             </div>
+            <div v-if="config.append && data.type !== 'custom'" class="flex items-center mt-2">
+                <label class="w-1/5 flex-no-shrink" for="append">{{ translate('addons.LinkIt::fieldtype.append_label') }}</label>
+                <text-fieldtype class="ml-2" :data.sync="data.append" :config="{ mode: 'text', placeholder: translate('addons.LinkIt::fieldtype.append_placeholder') }"></text-fieldtype>
+            </div>
         </div>
     `,
 
@@ -173,6 +177,7 @@ Vue.component('link_it-fieldtype', {
         this.config = Object.assign({
             aria: false,
             title: false,
+            append: false,
             newWindow: false,
         }, this.config);
     }

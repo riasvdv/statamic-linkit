@@ -1,6 +1,7 @@
 ## Installing
 
 - Unzip and place the LinkIt directory into /site/addons.
+- Run `php please update:addons`
 - You're done!
 
 ## Usage
@@ -166,36 +167,46 @@ fields:
     title: false
 ```
 
+### Append
+`bool` - Whether to allow users to append something to the url.
+
+```yaml
+fields:
+  link:
+    type: link_it
+    append: false
+```
+
 ## The modifier
 
 For easy usage, LinkIt comes with a modifier to generate a link tag or extract the necessary information.
 
 ### Generate a link tag
 ```
-{{ link | link_it }}
+{{ link | linkIt }}
 ```
 
 ### Get the link target
 ```
-{{ link | link_it:target }}
+{{ link | linkIt:target }}
 ```
 
 ### Get the link text
 ```
-{{ link | link_it:text }}
+{{ link | linkIt:text }}
 ```
 
 ### Get the link url
 ```
-{{ link | link_it:url }}
+{{ link | linkIt:url }}
 ```
 
 ### Get the link title
 ```
-{{ link | link_it:title }}
+{{ link | linkIt:title }}
 ```
 
 ### Get the link aria label
 ```
-{{ link | link_it:aria }}
+{{ link | linkIt:aria }}
 ```
