@@ -117,7 +117,7 @@ class LinkItModifier extends Modifier
             $url = Entry::find($link['entry'][0])->url();
         }
 
-        return $url . ($link['append'] ?? '');
+        return $url.($link['append'] ?? '');
     }
 
     protected function getTarget($link)
