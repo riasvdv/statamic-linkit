@@ -13,12 +13,11 @@ Vue.component('link_it-fieldtype', {
                 
                 <div v-if="config.newWindow" class="ml-auto w-1/4 text-right">
                     <input type="checkbox"
-                           name="newWindow"
-                           id="newWindow"
+                           :id="'newWindow'+this.uuid"
                            :value="true"
                            v-model="data.newWindow"
                     />
-                    <label for="newWindow">{{ translate('addons.LinkIt::fieldtype.new_window') }}</label>
+                    <label :for="'newWindow'+this.uuid">{{ translate('addons.LinkIt::fieldtype.new_window') }}</label>
                 </div>
             </div>
             <assets-fieldtype 
@@ -83,6 +82,7 @@ Vue.component('link_it-fieldtype', {
 
     data: function () {
         return {
+            uuid: this._uid,
         }
     },
 
