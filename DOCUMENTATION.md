@@ -210,3 +210,8 @@ For easy usage, LinkIt comes with a modifier to generate a link tag or extract t
 ```
 {{ link | linkIt:aria }}
 ```
+
+### Get the link type
+```
+{{ link | linkIt:type }}
+```

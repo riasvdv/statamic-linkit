@@ -124,4 +124,9 @@ class LinkItModifier extends Modifier
     {
         return isset($link['newWindow']) && $link['newWindow'] ? '_BLANK' : '_SELF';
     }
+
+    protected function getType($link)
+    {
+        return $link['type'];
+    }
 }
