@@ -92,18 +92,21 @@ class LinkItModifier extends Modifier
         if (isset($link['term'])) {
             $term = Term::find($link['term'][0]);
             $term->locale(app()->getLocale());
+
             return $term->slug();
         }
 
         if (isset($link['page'])) {
             $page = Page::find($link['page'][0]);
             $page->locale(app()->getLocale());
+
             return $page->get('title');
         }
 
         if (isset($link['entry'])) {
             $entry = Entry::find($link['entry'][0]);
             $entry->locale(app()->getLocale());
+
             return $entry->get('title');
         }
 
