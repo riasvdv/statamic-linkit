@@ -50,7 +50,18 @@ class LinkItModifier extends Modifier
 
     protected function getLink($link)
     {
-        $prefix = $link['type'] === 'email' ? 'mailto:' : ($link['type'] === 'tel' ? 'tel:' : '');
+        switch ($link['type']) {
+            case 'email':
+                $prefix = 'mailto:';
+                break;
+            case 'tel':
+                $prefix = 'tel:';
+                break;
+            default:
+                $prefix = '';
+                break;
+        }
+
         $return = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
         if (isset($link['title'])) {
             $return .= "title='{$link['title']}' ";
@@ -79,15 +90,21 @@ class LinkItModifier extends Modifier
             return Asset::find($link['asset'][0])->get('title', Asset::find($link['asset'][0])->filename());
         }
         if (isset($link['term'])) {
-            return Term::find($link['term'][0])->slug();
+            $term = Term::find($link['term'][0]);
+            $term->locale(app()->getLocale());
+            return $term->slug();
         }
 
         if (isset($link['page'])) {
-            return Page::find($link['page'][0])->get('title');
+            $page = Page::find($link['page'][0]);
+            $page->locale(app()->getLocale());
+            return $page->get('title');
         }
 
         if (isset($link['entry'])) {
-            return Entry::find($link['entry'][0])->get('title');
+            $entry = Entry::find($link['entry'][0]);
+            $entry->locale(app()->getLocale());
+            return $entry->get('title');
         }
 
         return $this->getUrl($link);
@@ -102,19 +119,27 @@ class LinkItModifier extends Modifier
         }
 
         if (isset($link['asset'])) {
-            $url = Asset::find($link['asset'][0])->url();
+            $asset = Asset::find($link['asset'][0]);
+            $asset->locale(app()->getLocale());
+            $url = $asset->url();
         }
 
         if (isset($link['term'])) {
-            $url = Term::find($link['term'][0])->url();
+            $term = Term::find($link['term'][0]);
+            $term->locale(app()->getLocale());
+            $url = $term->url();
         }
 
         if (isset($link['page'])) {
-            $url = Page::find($link['page'][0])->url();
+            $page = Page::find($link['page'][0]);
+            $page->locale(app()->getLocale());
+            $url = $page->url();
         }
 
         if (isset($link['entry'])) {
-            $url = Entry::find($link['entry'][0])->url();
+            $entry = Entry::find($link['entry'][0]);
+            $entry->locale(app()->getLocale());
+            $url = $entry->url();
         }
 
         return $url.($link['append'] ?? '');
