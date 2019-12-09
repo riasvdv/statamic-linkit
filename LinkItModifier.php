@@ -37,6 +37,10 @@ class LinkItModifier extends Modifier
             return $this->getTarget($link);
         }
 
+        if ($params[0] === 'type') {
+            return $this->getType($link);
+        }
+
         if ($params[0] === 'aria') {
             return $link['aria'] ?? '';
         }
