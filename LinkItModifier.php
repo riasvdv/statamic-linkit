@@ -91,10 +91,22 @@ class LinkItModifier extends Modifier
         }
 
         if (isset($link['asset'])) {
-            return Asset::find($link['asset'][0])->get('title', Asset::find($link['asset'][0])->filename());
+            $asset = Asset::find($link['asset'][0]);
+
+            if (! $asset) {
+                return '';
+            }
+
+            return $asset->get('title', $asset->filename());
         }
+
         if (isset($link['term'])) {
             $term = Term::find($link['term'][0]);
+
+            if (! $term) {
+                return '';
+            }
+
             $term->locale(app()->getLocale());
 
             return $term->slug();
@@ -102,6 +114,11 @@ class LinkItModifier extends Modifier
 
         if (isset($link['page'])) {
             $page = Page::find($link['page'][0]);
+
+            if (! $page) {
+                return '';
+            }
+
             $page->locale(app()->getLocale());
 
             return $page->get('title');
@@ -109,6 +126,11 @@ class LinkItModifier extends Modifier
 
         if (isset($link['entry'])) {
             $entry = Entry::find($link['entry'][0]);
+
+            if (! $entry) {
+                return '';
+            }
+
             $entry->locale(app()->getLocale());
 
             return $entry->get('title');
@@ -127,26 +149,38 @@ class LinkItModifier extends Modifier
 
         if (isset($link['asset'])) {
             $asset = Asset::find($link['asset'][0]);
-            $asset->locale(app()->getLocale());
-            $url = $asset->url();
+
+            if ($asset) {
+                $asset->locale(app()->getLocale());
+                $url = $asset->url();
+            }
         }
 
         if (isset($link['term'])) {
             $term = Term::find($link['term'][0]);
-            $term->locale(app()->getLocale());
-            $url = $term->url();
+
+            if ($term) {
+                $term->locale(app()->getLocale());
+                $url = $term->url();
+            }
         }
 
         if (isset($link['page'])) {
             $page = Page::find($link['page'][0]);
-            $page->locale(app()->getLocale());
-            $url = $page->url();
+
+            if ($page) {
+                $page->locale(app()->getLocale());
+                $url = $page->url();
+            }
         }
 
         if (isset($link['entry'])) {
             $entry = Entry::find($link['entry'][0]);
-            $entry->locale(app()->getLocale());
-            $url = $entry->url();
+
+            if ($entry) {
+                $entry->locale(app()->getLocale());
+                $url = $entry->url();
+            }
         }
 
         return $url.($link['append'] ?? '');
