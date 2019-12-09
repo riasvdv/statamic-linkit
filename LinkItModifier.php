@@ -50,7 +50,7 @@ class LinkItModifier extends Modifier
 
     protected function getLink($link, $class = '')
     {
-        if (! isset($link['type'])) {
+        if (!isset($link['type'])) {
             return $link;
         }
 
