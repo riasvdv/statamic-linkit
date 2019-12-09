@@ -186,6 +186,11 @@ For easy usage, LinkIt comes with a modifier to generate a link tag or extract t
 {{ link | linkIt }}
 ```
 
+### Generate a link tag with classes
+```
+{{ link | linkIt:btn btn-link }}
+```
+
 ### Get the link target
 ```
 {{ link | linkIt:target }}
