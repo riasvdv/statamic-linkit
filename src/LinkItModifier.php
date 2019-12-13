@@ -11,35 +11,35 @@ class LinkItModifier extends Modifier
 {
     public function index($link, $params, $context)
     {
-        if (!count($params)) {
-            return $this->getLink($link);
-        }
-
-        if ($params[0] === 'text') {
+        if (isset($params[0]) && $params[0] === 'text') {
             return $this->getText($link);
         }
 
-        if ($params[0] === 'url') {
+        if (isset($params[0]) && $params[0] === 'url') {
             return $this->getUrl($link);
         }
 
-        if ($params[0] === 'target') {
+        if (isset($params[0]) && $params[0] === 'target') {
             return $this->getTarget($link);
         }
 
-        if ($params[0] === 'aria') {
+        if (isset($params[0]) && $params[0] === 'aria') {
             return $link['aria'] ?? '';
         }
 
-        if ($params[0] === 'title') {
+        if (isset($params[0]) && $params[0] === 'title') {
             return $link['title'] ?? '';
         }
 
-        return $link;
+        return $this->getLink($link, $params[0] ?? null);
     }
 
-    protected function getLink($link)
+    protected function getLink($link, $class = '')
     {
+        if (! isset($link['type'])) {
+            return $link;
+        }
+
         switch ($link['type']) {
             case 'email':
                 $prefix = 'mailto:';
@@ -52,22 +52,22 @@ class LinkItModifier extends Modifier
                 break;
         }
 
-        $return = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
+        $tag = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
         if (isset($link['title'])) {
-            $return .= "title='{$link['title']}' ";
+            $tag .= "title='{$link['title']}' ";
         }
 
         if (isset($link['aria'])) {
-            $return .= "aria-label='{$link['aria']}' ";
+            $tag .= "aria-label='{$link['aria']}' ";
         }
 
         if (isset($link['newWindow']) && $link['newWindow']) {
-            $return .= "target='_blank' ";
+            $tag .= "target='_blank' ";
         }
 
-        $return .= ">{$this->getText($link)}</a>";
+        $tag .= " class='{$class}'>{$this->getText($link)}</a>";
 
-        return $return;
+        return $tag;
     }
 
     protected function getText($link)

@@ -10,8 +10,10 @@ Add the fieldtype to your fieldset by using the `link_it` handle. The most basic
 
 ```yaml
 fields:
-  link:
-    type: link_it
+  - 
+    link:
+      handle: link
+      type: link_it
 ```
 
 Content editors can then choose from all the following types:
@@ -36,10 +38,12 @@ Content editors can then choose from all the following types:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    containers:
-      - documents
+  -
+    handle: link
+    field:
+      type: link_it
+      containers:
+        - documents
 ```
 
 ### Term
@@ -50,14 +54,13 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    taxonomies:
-      - blog_categories
+  -
+    handle: link
+    field:
+      type: link_it
+      taxonomies:
+        - blog_categories
 ```
-
-### Page
-![page](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/page.png)
 
 ### Entry
 ![entry](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/entry.png)
@@ -67,10 +70,12 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    collections:
-      - blog
+  -
+    handle: link
+    field:
+      type: link_it
+      collections:
+        - blog
 ```
 
 You can configure which types are allowed by adding a `types` setting to your fieldtype.
@@ -83,9 +88,11 @@ This fieldtype supports the following settings. The default value is shown in th
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    required: false
+  -
+    handle: link
+    field:
+      type: link_it
+      required: false
 ```
 
 ### Types
@@ -93,17 +100,19 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    types:
-      - asset
-      - entry
-      - custom
-      - email
-      - page
-      - term
-      - tel
-      - url
+  -
+    handle: link
+    field:
+      type: link_it
+      types:
+        - asset
+        - entry
+        - custom
+        - email
+        - page
+        - term
+        - tel
+        - url
 ```
 
 To use the `asset`, `entry` and `term` types, please make sure you define the corresponding `containers`, `collections` and `taxonomies` settings.
@@ -113,10 +122,12 @@ To use the `asset`, `entry` and `term` types, please make sure you define the co
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    default:
-      type: url
+  -
+    handle: link
+    field:
+      type: link_it
+      default:
+        type: url
 ```
 
 ### NewWindow
@@ -126,9 +137,11 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    newWindow: false
+  -
+    handle: link
+    field:
+      type: link_it
+      newWindow: false
 ```
 
 ### Text
@@ -138,9 +151,11 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    text: false
+  -
+    handle: link
+    field:
+      type: link_it
+      text: false
 ```
 
 ### Aria
@@ -150,9 +165,11 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    aria: false
+  -
+    handle: link
+    field:
+      type: link_it
+      aria: false
 ```
 
 ### Title
@@ -162,9 +179,11 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    title: false
+  -
+    handle: link
+    field:
+      type: link_it
+      title: false
 ```
 
 ### Append
@@ -172,9 +191,11 @@ fields:
 
 ```yaml
 fields:
-  link:
-    type: link_it
-    append: false
+  -
+    handle: link
+    field:
+      type: link_it
+      append: false
 ```
 
 ## The modifier
