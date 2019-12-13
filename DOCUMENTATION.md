@@ -17,19 +17,19 @@ fields:
 Content editors can then choose from all the following types:
 
 ### Url
-![url](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/url.png)
+![url](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/url.png)
 
 ### Custom
-![custom](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/custom.png)
+![custom](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/custom.png)
 
 ### Email
-![email](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/email.png)
+![email](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/email.png)
 
 ### Tel
-![tel](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/tel.png)
+![tel](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/tel.png)
 
 ### Asset
-![asset](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/asset.png)
+![asset](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/asset.png)
 
 **Containers**
 `array` - You have to define the asset containers in the field settings to use this type.
@@ -43,7 +43,7 @@ fields:
 ```
 
 ### Term
-![term](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/term.png)
+![term](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/term.png)
 
 **Taxonomies**
 `array` - You have to define the taxonomies in the field settings to use this type.
@@ -57,10 +57,10 @@ fields:
 ```
 
 ### Page
-![page](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/page.png)
+![page](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/page.png)
 
 ### Entry
-![entry](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/entry.png)
+![entry](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/entry.png)
 
 **Collections**
 `array` - You have to define the collections in the field settings to use this type.
@@ -122,7 +122,7 @@ fields:
 ### NewWindow
 `bool` - Whether to give the choice to have links opened in a new window.
 
-![New Window](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/new-window.png)
+![New Window](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/new-window.png)
 
 ```yaml
 fields:
@@ -134,7 +134,7 @@ fields:
 ### Text
 `bool` - Whether to allow a custom link text. (For example "Read more")
 
-![Text](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/text.png)
+![Text](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/text.png)
 
 ```yaml
 fields:
@@ -146,7 +146,7 @@ fields:
 ### Aria
 `bool` - Whether to allow control over the `aria-label`.
 
-![Aria](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/aria.png)
+![Aria](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/aria.png)
 
 ```yaml
 fields:
@@ -158,7 +158,7 @@ fields:
 ### Title
 `bool` - Whether to allow control over the link `title`.
 
-![Title](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/title.png)
+![Title](https://github.com/riasvdv/statamic-linkit/raw/master/docs/img/title.png)
 
 ```yaml
 fields:

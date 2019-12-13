@@ -1,0 +1,21 @@
+{
+    "name": "rias/statamic-link-it",
+    "type": "statamic-addon",
+    "description": "Link to anything and everything!",
+    "autoload": {
+        "psr-4": {
+            "Rias\\LinkIt\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Link It",
+            "description": "Link to anything and everything!"
+        },
+        "laravel": {
+            "providers": [
+                "Rias\\LinkIt\\ServiceProvider"
+            ]
+        }
+    }
+}

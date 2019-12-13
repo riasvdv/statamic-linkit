@@ -1,12 +1,24 @@
 <?php
 
-namespace Statamic\Addons\LinkIt;
+namespace Rias\LinkIt;
 
 use Illuminate\Support\Facades\Validator;
-use Statamic\Extend\ServiceProvider;
+use Statamic\Providers\AddonServiceProvider;
 
-class LinkItServiceProvider extends ServiceProvider
+class ServiceProvider extends AddonServiceProvider
 {
+    protected $modifiers = [
+        LinkItModifier::class,
+    ];
+
+    protected $fieldtypes = [
+        LinkItFieldtype::class,
+    ];
+
+    protected $scripts = [
+        __DIR__.'/../dist/js/link-it.js'
+    ];
+
     /**
      * Bootstrap the application services.
      *
@@ -14,6 +26,10 @@ class LinkItServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
+
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'link-it');
+
         Validator::extend(
             'link_it',
             function ($attribute, $value, $parameters, \Illuminate\Validation\Validator $validator) {

@@ -8,7 +8,7 @@
 
 A fieldtype to link to anything.
 
-![Screenshot](https://github.com/riasvdv/statamic-linkit/raw/master/resources/assets/img/screenshot.png)
+![Screenshot](docs/img/screenshot.png)
 
 ## License
 
@@ -19,9 +19,17 @@ You may use LinkIt without a license while Statamic is in [Trial mode](https://d
 
 ## Installation
 
-- Unzip and place the LinkIt directory into /site/addons.
-- Run `php please update:addons`
-- You're done!
+Require it using Composer.
+
+```
+composer require rias/statamic-link-it
+```
+
+Publish the assets:
+
+```
+php artisan vendor:publish --provider="Rias\LinkIt\ServiceProvider"
+```
 
 ## Using LinkIt
 

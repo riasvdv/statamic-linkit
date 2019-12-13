@@ -1,59 +1,45 @@
 <?php
 
-namespace Statamic\Addons\LinkIt;
+namespace Rias\LinkIt;
 
-use Statamic\API\Asset;
-use Statamic\API\Entry;
-use Statamic\API\Page;
-use Statamic\API\Term;
-use Statamic\Extend\Modifier;
+use Statamic\Facades\Asset;
+use Statamic\Facades\Term;
+use Statamic\Facades\Entry;
+use Statamic\Modifiers\Modifier;
 
 class LinkItModifier extends Modifier
 {
-    /**
-     * Modify a value.
-     *
-     * @param mixed $link    The value to be modified
-     * @param array $params  Any parameters used in the modifier
-     * @param array $context Contextual values
-     *
-     * @return mixed
-     */
     public function index($link, $params, $context)
     {
-        if (isset($params[0]) && $params[0] === 'text') {
+        if (!count($params)) {
+            return $this->getLink($link);
+        }
+
+        if ($params[0] === 'text') {
             return $this->getText($link);
         }
 
-        if (isset($params[0]) && $params[0] === 'url') {
+        if ($params[0] === 'url') {
             return $this->getUrl($link);
         }
 
-        if (isset($params[0]) && $params[0] === 'target') {
+        if ($params[0] === 'target') {
             return $this->getTarget($link);
         }
 
-        if (isset($params[0]) && $params[0] === 'type') {
-            return $this->getType($link);
-        }
-
-        if (isset($params[0]) && $params[0] === 'aria') {
+        if ($params[0] === 'aria') {
             return $link['aria'] ?? '';
         }
 
-        if (isset($params[0]) && $params[0] === 'title') {
+        if ($params[0] === 'title') {
             return $link['title'] ?? '';
         }
 
-        return $this->getLink($link, $params[0] ?? null);
+        return $link;
     }
 
-    protected function getLink($link, $class = '')
+    protected function getLink($link)
     {
-        if (!isset($link['type'])) {
-            return $link;
-        }
-
         switch ($link['type']) {
             case 'email':
                 $prefix = 'mailto:';
@@ -66,22 +52,22 @@ class LinkItModifier extends Modifier
                 break;
         }
 
-        $tag = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
+        $return = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
         if (isset($link['title'])) {
-            $tag .= "title='{$link['title']}' ";
+            $return .= "title='{$link['title']}' ";
         }
 
         if (isset($link['aria'])) {
-            $tag .= "aria-label='{$link['aria']}' ";
+            $return .= "aria-label='{$link['aria']}' ";
         }
 
         if (isset($link['newWindow']) && $link['newWindow']) {
-            $tag .= "target='_blank' ";
+            $return .= "target='_blank' ";
         }
 
-        $tag .= " class='{$class}'>{$this->getText($link)}</a>";
+        $return .= ">{$this->getText($link)}</a>";
 
-        return $tag;
+        return $return;
     }
 
     protected function getText($link)
@@ -93,17 +79,16 @@ class LinkItModifier extends Modifier
         if (isset($link['asset'])) {
             $asset = Asset::find($link['asset'][0]);
 
-            if (!$asset) {
+            if (! $asset) {
                 return '';
             }
 
             return $asset->get('title', $asset->filename());
         }
-
         if (isset($link['term'])) {
             $term = Term::find($link['term'][0]);
 
-            if (!$term) {
+            if (! $term) {
                 return '';
             }
 
@@ -112,22 +97,10 @@ class LinkItModifier extends Modifier
             return $term->slug();
         }
 
-        if (isset($link['page'])) {
-            $page = Page::find($link['page'][0]);
-
-            if (!$page) {
-                return '';
-            }
-
-            $page->locale(app()->getLocale());
-
-            return $page->get('title');
-        }
-
         if (isset($link['entry'])) {
             $entry = Entry::find($link['entry'][0]);
 
-            if (!$entry) {
+            if (! $entry) {
                 return '';
             }
 
@@ -162,15 +135,6 @@ class LinkItModifier extends Modifier
             if ($term) {
                 $term->locale(app()->getLocale());
                 $url = $term->url();
-            }
-        }
-
-        if (isset($link['page'])) {
-            $page = Page::find($link['page'][0]);
-
-            if ($page) {
-                $page->locale(app()->getLocale());
-                $url = $page->url();
             }
         }
 
