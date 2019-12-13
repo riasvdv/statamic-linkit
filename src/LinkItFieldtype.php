@@ -12,58 +12,58 @@ class LinkItFieldtype extends Fieldtype
 
     protected $configFields = [
         'types' => [
-            'type' => 'select',
+            'type'     => 'select',
             'multiple' => true,
-            'display' => 'Available types',
-            'options' => [
-                'asset' => 'Asset',
-                'entry' => 'Entry',
+            'display'  => 'Available types',
+            'options'  => [
+                'asset'  => 'Asset',
+                'entry'  => 'Entry',
                 'custom' => 'Custom',
-                'email' => 'Email',
-                'term' => 'Term',
-                'tel' => 'Tel',
-                'url' => 'Url',
+                'email'  => 'Email',
+                'term'   => 'Term',
+                'tel'    => 'Tel',
+                'url'    => 'Url',
             ],
-            'default' => ['asset', 'entry', 'custom', 'email', 'term', 'tel', 'url']
+            'default' => ['asset', 'entry', 'custom', 'email', 'term', 'tel', 'url'],
         ],
         'newWindow' => [
-            'type' => 'toggle',
-            'width' => 50,
-            'instructions' => 'Give editors the option to open the links in a new window.'
+            'type'         => 'toggle',
+            'width'        => 50,
+            'instructions' => 'Give editors the option to open the links in a new window.',
         ],
         'text' => [
-            'type' => 'toggle',
-            'width' => 50,
-            'instructions' => 'Add a custom text field.'
+            'type'         => 'toggle',
+            'width'        => 50,
+            'instructions' => 'Add a custom text field.',
         ],
         'aria' => [
-            'type' => 'toggle',
-            'width' => 50,
-            'instructions' => 'Add a field to enter aria information.'
+            'type'         => 'toggle',
+            'width'        => 50,
+            'instructions' => 'Add a field to enter aria information.',
         ],
         'append' => [
-            'type' => 'toggle',
-            'width' => 50,
-            'instructions' => 'Add a field to append something to a dynamically generated url.'
+            'type'         => 'toggle',
+            'width'        => 50,
+            'instructions' => 'Add a field to append something to a dynamically generated url.',
         ],
         'collections' => [
-            'type' => 'collections',
-            'instructions' => 'Select the available collections.'
+            'type'         => 'collections',
+            'instructions' => 'Select the available collections.',
         ],
         'containers' => [
-            'type' => 'asset_container',
-            'instructions' => 'Select the available asset containers.'
+            'type'         => 'asset_container',
+            'instructions' => 'Select the available asset containers.',
         ],
         'taxonomies' => [
-            'type' => 'taxonomies',
-            'instructions' => 'Select the available taxonomies.'
+            'type'         => 'taxonomies',
+            'instructions' => 'Select the available taxonomies.',
         ],
     ];
 
     public function extraRules(): array
     {
         return [
-            'link_it:'.($this->config('required') ? 'required' : 'nullable')
+            'link_it:'.($this->config('required') ? 'required' : 'nullable'),
         ];
     }
 
@@ -107,10 +107,10 @@ class LinkItFieldtype extends Fieldtype
     {
         $modifier = new LinkItModifier();
 
-        if (! isset($data['type'])) {
-            return null;
+        if (!isset($data['type'])) {
+            return;
         }
 
-        return ucfirst($data['type']) . ": " . $modifier->index($data, ['text'], []);
+        return ucfirst($data['type']).': '.$modifier->index($data, ['text'], []);
     }
 }

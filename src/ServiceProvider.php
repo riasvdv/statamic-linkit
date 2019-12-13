@@ -16,7 +16,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $scripts = [
-        __DIR__.'/../dist/js/link-it.js'
+        __DIR__.'/../dist/js/link-it.js',
     ];
 
     /**
@@ -28,7 +28,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'link-it');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'link-it');
 
         Validator::extend(
             'link_it',

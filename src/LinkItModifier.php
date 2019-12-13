@@ -3,8 +3,8 @@
 namespace Rias\LinkIt;
 
 use Statamic\Facades\Asset;
-use Statamic\Facades\Term;
 use Statamic\Facades\Entry;
+use Statamic\Facades\Term;
 use Statamic\Modifiers\Modifier;
 
 class LinkItModifier extends Modifier
@@ -79,7 +79,7 @@ class LinkItModifier extends Modifier
         if (isset($link['asset'])) {
             $asset = Asset::find($link['asset'][0]);
 
-            if (! $asset) {
+            if (!$asset) {
                 return '';
             }
 
@@ -88,7 +88,7 @@ class LinkItModifier extends Modifier
         if (isset($link['term'])) {
             $term = Term::find($link['term'][0]);
 
-            if (! $term) {
+            if (!$term) {
                 return '';
             }
 
@@ -100,7 +100,7 @@ class LinkItModifier extends Modifier
         if (isset($link['entry'])) {
             $entry = Entry::find($link['entry'][0]);
 
-            if (! $entry) {
+            if (!$entry) {
                 return '';
             }
 
