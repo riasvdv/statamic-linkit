@@ -92,7 +92,7 @@ class LinkItModifier extends Modifier
                 return '';
             }
 
-            $term->locale(app()->getLocale());
+            //$term->locale(app()->getLocale());
 
             return $term->slug();
         }
@@ -104,7 +104,7 @@ class LinkItModifier extends Modifier
                 return '';
             }
 
-            $entry->locale(app()->getLocale());
+            //$entry->locale(app()->getLocale());
 
             return $entry->get('title');
         }
@@ -124,7 +124,7 @@ class LinkItModifier extends Modifier
             $asset = Asset::find($link['asset'][0]);
 
             if ($asset) {
-                $asset->locale(app()->getLocale());
+                //$asset->locale(app()->getLocale());
                 $url = $asset->url();
             }
         }
@@ -133,7 +133,7 @@ class LinkItModifier extends Modifier
             $term = Term::find($link['term'][0]);
 
             if ($term) {
-                $term->locale(app()->getLocale());
+                //$term->locale(app()->getLocale());
                 $url = $term->url();
             }
         }
@@ -142,7 +142,7 @@ class LinkItModifier extends Modifier
             $entry = Entry::find($link['entry'][0]);
 
             if ($entry) {
-                $entry->locale(app()->getLocale());
+                //$entry->locale(app()->getLocale());
                 $url = $entry->url();
             }
         }
