@@ -181,7 +181,7 @@ export default {
                 Object.keys(newValue).map(key => {
                     let statamicValue = this.value;
 
-                    if (statamicValue === null) {
+                    if (statamicValue === null || statamicValue.length === 0) {
                         statamicValue = {};
                     }
 
