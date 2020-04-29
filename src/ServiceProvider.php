@@ -72,12 +72,12 @@ class ServiceProvider extends AddonServiceProvider
                         break;
                     default:
                         if ($required && (
-                                empty($value['url'])
+                            empty($value['url'])
                                 && empty($value['asset'])
                                 && empty($value['page'])
                                 && empty($value['term'])
                                 && empty($value['entry'])
-                            )
+                        )
                         ) {
                             $validator->errors()->add($attribute, trans('addons.LinkIt::messages.required', ['attribute' => 'LinkIt']));
 
