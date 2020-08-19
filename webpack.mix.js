@@ -1,3 +1,3 @@
-let mix = require('laravel-mix');
+let mix = require("laravel-mix");
 
-mix.js('resources/js/link-it.js', 'dist/js');
+mix.js("resources/js/link-it.js", "dist/js");
