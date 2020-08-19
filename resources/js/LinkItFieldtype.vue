@@ -86,14 +86,17 @@
                     :initial-value="internal.entry"
                     class="ml-2 flex-1"
             >
-                <div slot-scope="{ meta, value, loading, config }">
+                <div slot-scope="{ meta, value, loading }">
                     <relationship-fieldtype
                             v-if="!loading"
                             :config="{ handle: 'collections', type: 'entries', collections: [collection.value], mode: 'select', max_items: 1 }"
                             :value="value"
                             :meta="meta"
-                            handle="collections"
-                            @input="internal.entry = $event" />
+                            handle="entry"
+                            ref="entry"
+                            @input="internal.entry = $event"
+                            @meta-updated="meta.data = $event.data"
+                    />
                 </div>
             </publish-field-meta>
 
