@@ -1,3 +1,5 @@
+import LinkItFieldtype from "./LinkItFieldtype";
+
 Statamic.booting(() => {
-  Statamic.component("link_it-fieldtype", require("./LinkItFieldtype.vue"));
+  Statamic.component("link_it-fieldtype", LinkItFieldtype);
 });
