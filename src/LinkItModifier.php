@@ -9,6 +9,8 @@ use Statamic\Modifiers\Modifier;
 
 class LinkItModifier extends Modifier
 {
+    protected static $handle = 'link_it';
+
     public function index($link, $params, $context)
     {
         if (isset($params[0]) && $params[0] === 'text') {
