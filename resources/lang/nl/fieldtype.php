@@ -11,7 +11,7 @@ return [
     'title_label'         => 'Link titel',
     'title_placeholder'   => 'Een link titel',
     'email_placeholder'   => 'john@example.com',
-    'url_placeholder'     => 'https://rias.be',
+    'url_placeholder'     => 'https://example.com',
     'tel_placeholder'     => '+1 123 456 789',
     'custom_placeholder'  => '#interne-link',
     'asset'               => 'Bestand',
