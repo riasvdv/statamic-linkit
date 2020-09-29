@@ -131,7 +131,7 @@
       <!-- TEXT, CUSTOM -->
       <text-input
         v-if="['url', 'custom', 'email', 'tel'].indexOf(internal.type) !== -1"
-        class="flex-1 ml-2"
+        class="flex-1"
         :prepend="textPrepend"
         v-model="internal.url"
         type="text"
@@ -242,6 +242,10 @@ export default {
       Object.keys(this.value).forEach(key => {
         this.internal[key] = this.value[key];
       });
+    }
+
+    if (this.types.length === 1) {
+      this.internal.type = this.types[0].value;
     }
   },
 
