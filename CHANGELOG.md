@@ -1,5 +1,9 @@
 # Release Notes
 
+## 2.2.0 (2020-11-04)
+### What's new
+- Add a `prefix` parameter
+
 ## 2.1.4 (2019-09-29)
 ### What's fixed
 - Fix LinkIt not showing up when only 1 type is available
