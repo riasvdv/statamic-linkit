@@ -21,6 +21,10 @@ class LinkItModifier extends Modifier
             return $this->getUrl($link);
         }
 
+        if (isset($params[0]) && $params[0] === 'prefix') {
+            return $this->getPrefix($link);
+        }
+
         if (isset($params[0]) && $params[0] === 'target') {
             return $this->getTarget($link);
         }
@@ -42,19 +46,7 @@ class LinkItModifier extends Modifier
             return $link;
         }
 
-        switch ($link['type']) {
-            case 'email':
-                $prefix = 'mailto:';
-                break;
-            case 'tel':
-                $prefix = 'tel:';
-                break;
-            default:
-                $prefix = '';
-                break;
-        }
-
-        $tag = "<a href='{$prefix}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
+        $tag = "<a href='{$this->getPrefix($link)}{$this->getUrl($link)}' target='{$this->getTarget($link)}' ";
         if (isset($link['title'])) {
             $tag .= "title='{$link['title']}' ";
         }
@@ -70,6 +62,19 @@ class LinkItModifier extends Modifier
         $tag .= " class='{$class}'>{$this->getText($link)}</a>";
 
         return $tag;
+    }
+
+    protected function getPrefix($link): string
+    {
+        if ($link['type'] === 'email') {
+            return 'mailto:';
+        }
+
+        if ($link['type'] === 'tel') {
+            return 'tel:';
+        }
+
+        return '';
     }
 
     protected function getText($link)
