@@ -7,14 +7,7 @@
             "Rias\\LinkIt\\": "src"
         }
     },
-    "require":  {
-        "pixelfear/composer-dist-plugin": "^0.1.0"
-    },
     "extra": {
-        "download-dist": {
-            "url": "https://github.com/riasvdv/statamic-linkit/releases/download/{$version}/dist.tar.gz",
-            "path": "dist"
-        },
         "statamic": {
             "name": "Link It",
             "description": "Link to anything and everything!"

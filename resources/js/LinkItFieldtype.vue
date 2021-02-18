@@ -215,6 +215,7 @@ export default {
 
   data: function() {
     return {
+      fromWatch: false,
       internal: {
         type: null,
         url: null,
@@ -250,6 +251,16 @@ export default {
   },
 
   watch: {
+    value: function(newValue) {
+      this.fromWatch = true;
+      Object.keys(newValue).forEach(key => {
+        this.internal[key] = newValue[key];
+      });
+
+      this.$nextTick(() => {
+        this.fromWatch = false;
+      })
+    },
     internal: {
       deep: true,
       handler: function(newValue, oldValue) {
@@ -267,21 +278,37 @@ export default {
       }
     },
     "internal.container": function(newValue, oldValue) {
+      if (this.fromWatch) {
+        return;
+      }
+
       if (newValue !== oldValue && oldValue !== null) {
         this.internal.asset = null;
       }
     },
     "internal.collection": function(newValue, oldValue) {
+      if (this.fromWatch) {
+        return;
+      }
+
       if (newValue !== oldValue && oldValue !== null) {
         this.internal.entry = null;
       }
     },
     "internal.taxonomy": function(newValue, oldValue) {
+      if (this.fromWatch) {
+        return;
+      }
+
       if (newValue !== oldValue && oldValue !== null) {
         this.internal.term = null;
       }
     },
     "internal.type": function(newValue, oldValue) {
+      if (this.fromWatch) {
+        return;
+      }
+
       if (newValue !== oldValue && oldValue !== null) {
         // Reset url data
         this.internal.url = "";
@@ -318,6 +345,12 @@ export default {
   },
 
   computed: {
+    replicatorPreview() {
+      if (!this.value) return;
+
+      return __("link-it::fieldtype." + this.value.type);
+    },
+
     types: function() {
       let types = this.config.types || [
         "asset",
@@ -389,14 +422,6 @@ export default {
       }
 
       return "";
-    }
-  },
-
-  methods: {
-    getReplicatorPreviewText() {
-      if (!this.value) return;
-
-      return __("link-it::fieldtype." + this.value.type);
     }
   },
 

@@ -1,5 +1,9 @@
 # Release Notes
 
+## 2.2.1 (2021-02-18)
+### What's fixed
+- Fixed a bug where switching sites would keep old data
+
 ## 2.2.0 (2020-11-04)
 ### What's new
 - Add a `prefix` parameter
