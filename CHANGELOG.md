@@ -1,5 +1,9 @@
 # Release Notes
 
+## 2.2.2 (2021-03-14)
+### What's fixed
+- Fixed an issue where the entry collection picker wouldn't show
+
 ## 2.2.1 (2021-02-18)
 ### What's fixed
 - Fixed a bug where switching sites would keep old data
