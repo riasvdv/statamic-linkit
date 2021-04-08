@@ -1,5 +1,9 @@
 # Release Notes
 
+## 2.2.3 (2021-04-08)
+### What's new
+- Use a better (default) interface for picking entries
+
 ## 2.2.2 (2021-03-14)
 ### What's fixed
 - Fixed an issue where the entry collection picker wouldn't show

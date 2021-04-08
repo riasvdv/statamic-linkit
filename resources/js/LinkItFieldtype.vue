@@ -86,27 +86,16 @@
       </publish-field-meta>
 
       <!-- ENTRIES -->
-      <v-select
-        v-if="internal.type === 'entry'"
-        class="w-1/5 mr-2"
-        :options="collections"
-        :reduce="selection => selection.value"
-        v-model="internal.collection"
-        v-show="collections.length > 1"
-      />
       <publish-field-meta
-        v-for="(collection, index) in collections"
-        v-if="
-          internal.type === 'entry' && internal.collection === collection.value
-        "
-        :key="index"
+        v-if="internal.type === 'entry'"
         :config="{
           handle: 'collections',
           type: 'entries',
-          collections: [collection.value]
+          collections: config.collections,
         }"
         :initial-value="internal.entry"
         class="flex-1"
+        :class="internal.entry ? '-mb-1' : ''"
       >
         <div slot-scope="{ meta, value, loading }">
           <relationship-fieldtype
@@ -114,9 +103,9 @@
             :config="{
               handle: 'collections',
               type: 'entries',
-              collections: [collection.value],
-              mode: 'select',
-              max_items: 1
+              collections: config.collections,
+              mode: 'default',
+              max_items: 1,
             }"
             :value="value"
             :meta="meta"
