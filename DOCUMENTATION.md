@@ -222,6 +222,11 @@ For easy usage, LinkIt comes with a modifier to generate a link tag or extract t
 {{ link | linkIt:text }}
 ```
 
+### Get the link prefix (mailto: & tel:)
+```
+{{ link | linkIt:prefix }}
+```
+
 ### Get the link url
 ```
 {{ link | linkIt:url }}
