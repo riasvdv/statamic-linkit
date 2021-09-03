@@ -1,7 +1,7 @@
 ## Installing
 
-- Unzip and place the LinkIt directory into /site/addons.
-- Run `php please update:addons`
+- Run `composer require rias/statamic-link-it`
+- Publish the assets with `php artisan vendor:publish --provider="Rias\LinkIt\ServiceProvider"`
 - You're done!
 
 ## Usage
