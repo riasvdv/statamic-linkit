@@ -1,5 +1,9 @@
 # Release Notes
 
+## 2.3.0 (2023-02-01)
+### What's new
+- Add Danish translation
+
 ## 2.2.3 (2021-04-08)
 ### What's new
 - Use a better (default) interface for picking entries
