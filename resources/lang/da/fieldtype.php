@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'new_window'          => 'Åbn i et nyt vindue?',
+    'text_label'          => 'Tilpasset linktekst',
+    'text_placeholder'    => 'Læs mere',
+    'aria_label'          => 'Aria-etiket',
+    'aria_placeholder'    => 'Læs mere om dette',
+    'title_label'         => 'Linktitel',
+    'title_placeholder'   => 'En linktitel',
+    'append_label'        => 'Tilføj',
+    'append_placeholder'  => '?query=value',
+    'email_placeholder'   => 'john@example.com',
+    'url_placeholder'     => 'https://example.com',
+    'tel_placeholder'     => '+45 12 34 56 78',
+    'custom_placeholder'  => '#anchor-link',
+    'asset'               => 'Medie',
+    'entry'               => 'Indlæg',
+    'custom'              => 'Tilpasset',
+    'email'               => 'Email',
+    'page'                => 'Side',
+    'term'                => 'Term',
+    'tel'                 => 'Tlf',
+    'url'                 => 'URL',
+];
