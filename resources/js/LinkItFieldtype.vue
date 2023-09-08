@@ -205,7 +205,7 @@
   </div>
 </template>
 <script>
-import PositionsSelectOptions from '../../../../../vendor/statamic/cms/resources/js/mixins/PositionsSelectOptions.js'
+import PositionsSelectOptions from '../../vendor/statamic/cms/resources/js/mixins/PositionsSelectOptions.js'
 
 export default {
   mixins: [Fieldtype, PositionsSelectOptions],

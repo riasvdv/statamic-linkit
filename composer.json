@@ -7,6 +7,13 @@
             "Rias\\LinkIt\\": "src"
         }
     },
+    "require": {
+        "statamic/cms": "^v4.0"
+    },
+    "scripts": {
+        "post-install-cmd": "cd vendor/statamic/cms && npm install",
+        "post-update-cmd": "cd vendor/statamic/cms && npm install"
+    },
     "extra": {
         "statamic": {
             "name": "Link It",
@@ -16,6 +23,11 @@
             "providers": [
                 "Rias\\LinkIt\\ServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
         }
     }
 }
