@@ -4,6 +4,7 @@
       <v-select
         class="w-1/5 mr-2"
         append-to-body
+        :calculate-position="positionOptions"
         :options="types"
         :reduce="selection => selection.value"
         v-model="internal.type"
@@ -15,6 +16,7 @@
         v-if="internal.type === 'term'"
         class="w-1/5"
         append-to-body
+        :calculate-position="positionOptions"
         :options="taxonomies"
         :reduce="selection => selection.value"
         v-model="internal.taxonomy"
@@ -55,6 +57,7 @@
         v-if="internal.type === 'asset'"
         class="w-1/5"
         append-to-body
+        :calculate-position="positionOptions"
         :options="containers"
         :reduce="selection => selection.value"
         v-model="internal.container"
@@ -202,8 +205,10 @@
   </div>
 </template>
 <script>
+import PositionsSelectOptions from '../../../../../vendor/statamic/cms/resources/js/mixins/PositionsSelectOptions.js'
+
 export default {
-  mixins: [Fieldtype],
+  mixins: [Fieldtype, PositionsSelectOptions],
 
   data: function() {
     return {
