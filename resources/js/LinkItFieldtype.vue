@@ -3,6 +3,7 @@
     <div class="flex flex-wrap items-center">
       <v-select
         class="w-1/5 mr-2"
+        append-to-body
         :options="types"
         :reduce="selection => selection.value"
         v-model="internal.type"
@@ -13,6 +14,7 @@
       <v-select
         v-if="internal.type === 'term'"
         class="w-1/5"
+        append-to-body
         :options="taxonomies"
         :reduce="selection => selection.value"
         v-model="internal.taxonomy"
@@ -52,6 +54,7 @@
       <v-select
         v-if="internal.type === 'asset'"
         class="w-1/5"
+        append-to-body
         :options="containers"
         :reduce="selection => selection.value"
         v-model="internal.container"
