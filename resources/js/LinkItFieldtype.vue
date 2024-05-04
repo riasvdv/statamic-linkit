@@ -1,3 +1,8 @@
+<style>
+  .w-1\/5 {
+    width: 20%;
+  }
+</style>
 <template>
   <div>
     <div class="flex flex-wrap items-center">
@@ -196,7 +201,7 @@
       >
         <toggle-fieldtype handle="newWindow" v-model="internal.newWindow" />
         <label
-          class="ml-1 font-normal"
+          class="ml-2 font-normal"
           @click="internal.newWindow = !internal.newWindow"
           >{{ __("link-it::fieldtype.new_window") }}</label
         >
