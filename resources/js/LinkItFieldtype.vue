@@ -6,10 +6,8 @@
 <template>
   <div>
     <div class="flex flex-wrap items-center">
-      <v-select
+      <Select
         class="w-1/5 mr-2"
-        append-to-body
-        :calculate-position="positionOptions"
         :options="types"
         :reduce="selection => selection.value"
         v-model="internal.type"
@@ -17,119 +15,76 @@
       />
 
       <!-- TAXONOMIES -->
-      <v-select
+      <Select
         v-if="internal.type === 'term'"
-        class="w-1/5"
-        append-to-body
-        :calculate-position="positionOptions"
-        :options="taxonomies"
+        class="w-1/5 mr-2"
+        :options="meta.taxonomies"
         :reduce="selection => selection.value"
         v-model="internal.taxonomy"
-        v-show="taxonomies.length > 1"
+        v-show="meta.taxonomies.length >= 1"
       />
-      <publish-field-meta
-        v-for="(taxonomy, index) in taxonomies"
-        v-if="internal.type === 'term' && internal.taxonomy === taxonomy.value"
-        :key="index"
-        :config="{
-          handle: 'taxonomies',
-          type: 'taxonomy',
-          taxonomy: taxonomy.value
-        }"
-        :initial-value="internal.term"
-        class="ml-2 flex-1"
-      >
-        <div slot-scope="{ meta, value, loading, config }">
-          <relationship-fieldtype
-            v-if="!loading"
-            :config="{
-              handle: 'taxonomies',
-              type: 'taxonomy',
-              taxonomy: taxonomy.value,
-              mode: 'select',
-              max_items: 1
-            }"
-            :value="value"
-            :meta="meta"
-            handle="taxonomies"
-            @input="internal.term = $event"
-          />
-        </div>
-      </publish-field-meta>
-
-      <!-- ASSETS -->
-      <v-select
-        v-if="internal.type === 'asset'"
-        class="w-1/5"
-        append-to-body
-        :calculate-position="positionOptions"
-        :options="containers"
-        :reduce="selection => selection.value"
-        v-model="internal.container"
-        v-show="containers.length > 1"
+      <relationship-fieldtype
+          v-show="internal.type === 'term' && taxonomy.value === internal.taxonomy"
+          v-for="taxonomy in meta.taxonomies"
+          :key="taxonomy.value"
+          class="w-1/5"
+          :config="taxonomy.config"
+          :meta="taxonomy.meta"
+          :value="internal.term"
+          @update:meta="taxonomy.meta = $event"
+          @update:value="internal.term = $event"
+          button-size="base"
+          handle="term"
       />
-      <publish-field-meta
-        v-if="internal.type === 'asset' && internal.container"
-        :config="{ type: 'assets' }"
-        :initial-value="internal.asset"
-        :initial-meta="{ container: internal.container }"
-        class="w-full assets-fieldtype mt-2"
-      >
-        <div slot-scope="{ meta, value, loading }">
-          <assets-fieldtype
-            v-if="!loading"
-            :config="{
-              container: internal.container,
-              mode: 'list',
-              allow_uploads: true,
-              max_files: 1,
-              type: 'assets',
-              display: 'assets',
-              component: 'assets',
-              handle: 'assets'
-            }"
-            :value="value"
-            :meta="meta"
-            handle="asset"
-            @input="internal.asset = $event"
-          />
-        </div>
-      </publish-field-meta>
 
       <!-- ENTRIES -->
-      <publish-field-meta
-        v-if="internal.type === 'entry'"
-        :config="{
-          handle: 'collections',
-          type: 'entries',
-          collections: config.collections,
-        }"
-        :initial-value="internal.entry"
-        class="flex-1"
-        :class="internal.entry ? '-mb-1' : ''"
-      >
-        <div slot-scope="{ meta, value, loading }">
-          <relationship-fieldtype
-            v-if="!loading"
-            :config="{
-              handle: 'collections',
-              type: 'entries',
-              collections: config.collections,
-              mode: 'default',
-              max_items: 1,
-            }"
-            :value="value"
-            :meta="meta"
-            handle="entry"
-            ref="entry"
-            @input="internal.entry = $event"
-            @meta-updated="meta.data = $event.data"
-          />
-        </div>
-      </publish-field-meta>
+      <Select
+          v-if="internal.type === 'entry'"
+          class="w-1/5 mr-2"
+          :options="meta.collections"
+          :reduce="selection => selection.value"
+          v-model="internal.collection"
+          v-show="meta.collections.length >= 1"
+      />
+      <relationship-fieldtype
+          v-show="internal.type === 'entry' && collection.value === internal.collection"
+          v-for="collection in meta.collections"
+          :key="collection.value"
+          class="w-1/5"
+          :config="collection.config"
+          :meta="collection.meta"
+          :value="internal.entry"
+          @update:meta="collection.meta = $event"
+          @update:value="internal.entry = $event"
+          button-size="base"
+          handle="entry"
+      />
+
+      <!-- ASSETS -->
+      <Select
+          v-if="internal.type === 'asset'"
+          class="w-1/5 mr-2"
+          :options="meta.containers"
+          :reduce="selection => selection.value"
+          v-model="internal.container"
+          v-show="meta.containers.length >= 1"
+      />
+      <div class="mt-2 min-w-full">
+        <assets-fieldtype
+            v-show="internal.type === 'asset' && container.value === internal.container"
+            v-for="container in meta.containers"
+            ref="assets"
+            handle="asset"
+            :value="internal.asset"
+            :config="container.config"
+            :meta="container.meta"
+            @update:meta="container.meta = $event"
+            @update:value="internal.asset = $event"
+        />
+      </div>
 
       <!-- TEXT, CUSTOM -->
-      <text-input
+      <Text
         v-if="['url', 'custom', 'email', 'tel'].indexOf(internal.type) !== -1"
         class="flex-1"
         :prepend="textPrepend"
@@ -145,7 +100,7 @@
         <label class="w-1/5 flex-no-shrink" for="text">{{
           __("link-it::fieldtype.text_label")
         }}</label>
-        <text-input
+        <Text
           class="flex-1 ml-2"
           v-model="internal.text"
           type="text"
@@ -159,7 +114,7 @@
         <label class="w-1/5 flex-no-shrink" for="aria">{{
           __("link-it::fieldtype.aria_label")
         }}</label>
-        <text-input
+        <Text
           class="flex-1 ml-2"
           v-model="internal.aria"
           type="text"
@@ -173,7 +128,7 @@
         <label class="w-1/5 flex-no-shrink" for="title">{{
           __("link-it::fieldtype.title_label")
         }}</label>
-        <text-input
+        <Text
           class="flex-1 ml-2"
           v-model="internal.title"
           type="text"
@@ -187,7 +142,7 @@
         <label class="w-1/5 flex-no-shrink" for="append">{{
           __("link-it::fieldtype.append_label")
         }}</label>
-        <text-input
+        <Text
           class="flex-1 ml-2"
           v-model="internal.append"
           type="text"
@@ -199,7 +154,7 @@
         v-if="internal.type && config.newWindow"
         class="ml-auto w-full mt-2 flex items-center"
       >
-        <toggle-fieldtype handle="newWindow" v-model="internal.newWindow" />
+        <Switch id="newWindow" v-model="internal.newWindow" />
         <label
           class="ml-2 font-normal"
           @click="internal.newWindow = !internal.newWindow"
@@ -210,10 +165,18 @@
   </div>
 </template>
 <script>
+import { FieldtypeMixin } from "@statamic/cms";
+import { Input as Text, Select, Switch } from "@statamic/cms/ui";
 import PositionsSelectOptions from '../../vendor/statamic/cms/resources/js/mixins/PositionsSelectOptions.js'
 
 export default {
-  mixins: [Fieldtype, PositionsSelectOptions],
+  mixins: [FieldtypeMixin, PositionsSelectOptions],
+
+  components: {
+    Text,
+    Select,
+    Switch,
+  },
 
   data: function() {
     return {
@@ -310,16 +273,16 @@ export default {
         this.internal.append = "";
       }
 
-      if (newValue === "entry" && this.collections.length === 1) {
-        this.internal.collection = this.collections[0].value;
+      if (newValue === "entry" && this.meta.collections.length === 1) {
+        this.internal.collection = this.meta.collections[0].value;
       }
 
-      if (newValue === "term" && this.taxonomies.length === 1) {
-        this.internal.taxonomy = this.taxonomies[0].value;
+      if (newValue === "term" && this.meta.taxonomies.length === 1) {
+        this.internal.taxonomy = this.meta.taxonomies[0].value;
       }
 
-      if (newValue === "asset" && this.containers.length === 1) {
-        this.internal.container = this.containers[0].value;
+      if (newValue === "asset" && this.meta.containers.length === 1) {
+        this.internal.container = this.meta.containers[0].value;
       }
     }
   },
@@ -342,42 +305,21 @@ export default {
         "url"
       ];
 
-      if (this.containers.length === 0 && types.indexOf("asset") !== -1) {
+      if (this.meta.containers.length === 0 && types.indexOf("asset") !== -1) {
         types.splice(types.indexOf("asset"), 1);
       }
 
-      if (this.collections.length === 0 && types.indexOf("entry") !== -1) {
+      if (this.meta.collections.length === 0 && types.indexOf("entry") !== -1) {
         types.splice(types.indexOf("entry"), 1);
       }
 
-      if (this.taxonomies.length === 0 && types.indexOf("term") !== -1) {
+      if (this.meta.taxonomies.length === 0 && types.indexOf("term") !== -1) {
         types.splice(types.indexOf("term"), 1);
       }
 
       return types.map(type => {
         return { value: type, label: __("link-it::fieldtype." + type) };
       });
-    },
-    taxonomies: function() {
-      return this.config.taxonomies
-        ? _.map(this.config.taxonomies, function(taxonomy) {
-            return { value: taxonomy, label: __(taxonomy) };
-          })
-        : [];
-    },
-    containers: function() {
-      return this.config.containers
-        ? _.map(this.config.containers, function(container) {
-            return { value: container, label: __(container) };
-          })
-        : [];
-    },
-    collections: function() {
-      return this.config.collections
-        ? _.map(this.config.collections, function(collection) {
-            return { value: collection, label: __(collection) };
-          })
-        : [];
     },
     urlPlaceholder: function() {
       switch (this.internal.type) {

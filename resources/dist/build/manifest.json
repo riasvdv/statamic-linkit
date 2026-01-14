@@ -1,0 +1,16 @@
+{
+  "resources/css/link-it.css": {
+    "file": "assets/link-it-BE_mKODl.css",
+    "src": "resources/css/link-it.css",
+    "isEntry": true
+  },
+  "resources/js/cp.js": {
+    "file": "assets/cp--am3jAUE.js",
+    "name": "cp",
+    "src": "resources/js/cp.js",
+    "isEntry": true,
+    "css": [
+      "assets/cp-DjhZCoPI.css"
+    ]
+  }
+}

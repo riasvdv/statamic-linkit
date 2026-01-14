@@ -15,8 +15,13 @@ class ServiceProvider extends AddonServiceProvider
         LinkItFieldtype::class,
     ];
 
-    protected $scripts = [
-        __DIR__.'/../dist/js/link-it.js',
+    protected $vite = [
+        'input' => [
+            'resources/js/cp.js',
+            'resources/css/link-it.css',
+        ],
+        'publicDirectory' => 'dist',
+        'hotFile' => __DIR__.'/../dist/hot',
     ];
 
     /**
