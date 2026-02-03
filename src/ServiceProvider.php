@@ -20,7 +20,7 @@ class ServiceProvider extends AddonServiceProvider
             'resources/js/cp.js',
             'resources/css/link-it.css',
         ],
-        'publicDirectory' => 'dist',
+        'publicDirectory' => 'resources/dist',
         'hotFile' => __DIR__.'/../dist/hot',
     ];
 
