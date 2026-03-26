@@ -238,17 +238,17 @@ export default {
     },
     "internal.container": function(newValue, oldValue) {
       if (newValue !== oldValue && oldValue !== null) {
-        this.internal.asset = null;
+        this.internal.asset = [];
       }
     },
     "internal.collection": function(newValue, oldValue) {
       if (newValue !== oldValue && oldValue !== null) {
-        this.internal.entry = null;
+        this.internal.entry = [];
       }
     },
     "internal.taxonomy": function(newValue, oldValue) {
       if (newValue !== oldValue && oldValue !== null) {
-        this.internal.term = null;
+        this.internal.term = [];
       }
     },
     "internal.type": function(newValue, oldValue) {
@@ -272,6 +272,14 @@ export default {
         this.internal.title = "";
         this.internal.append = "";
       }
+
+      // Ensure relationship fields are arrays, not null. When the type is
+      // selected for the first time (oldValue is null), the reset block above
+      // is skipped, leaving these as their initial null value. Statamic's
+      // Selector component expects an array for initialSelections.
+      if (this.internal.entry === null) this.internal.entry = [];
+      if (this.internal.term === null) this.internal.term = [];
+      if (this.internal.asset === null) this.internal.asset = [];
 
       if (newValue === "entry" && this.meta.collections.length === 1) {
         this.internal.collection = this.meta.collections[0].value;

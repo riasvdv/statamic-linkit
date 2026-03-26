@@ -142,7 +142,7 @@ class LinkItFieldtype extends Fieldtype
                         'config' => $field->config(),
                         'meta' => $field->preload(),
                     ];
-                })->all(),
+                })->values()->all(),
             'containers' => AssetContainer::all()
                 ->whereIn('handle', $fieldConfig['containers'] ?? [])
                 ->map(function (\Statamic\Assets\AssetContainer $container) use ($value) {
@@ -159,7 +159,7 @@ class LinkItFieldtype extends Fieldtype
                         'config' => $field->config(),
                         'meta' => $field->preload(),
                     ];
-                })->all(),
+                })->values()->all(),
             'taxonomies' => Taxonomy::all()
                 ->whereIn('handle', $fieldConfig['taxonomies'] ?? [])
                 ->map(function (\Statamic\Taxonomies\Taxonomy $taxonomy) use ($value) {
@@ -176,7 +176,7 @@ class LinkItFieldtype extends Fieldtype
                         'config' => $field->config(),
                         'meta' => $field->preload(),
                     ];
-                })->all(),
+                })->values()->all(),
         ];
     }
 
