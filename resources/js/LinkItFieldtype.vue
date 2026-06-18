@@ -8,6 +8,7 @@
     <div class="flex flex-wrap items-center">
       <Select
         class="w-1/5 mr-2"
+        :clearable="!config.required"
         :options="types"
         :reduce="selection => selection.value"
         v-model="internal.type"
