@@ -223,18 +223,23 @@ export default {
     },
     internal: {
       deep: true,
-      handler: function(newValue, oldValue) {
-        Object.keys(newValue).map(key => {
-          let statamicValue = this.value;
+      handler: function(newValue) {
+        const current =
+          this.value === null || this.value.length === 0 ? {} : this.value;
 
-          if (statamicValue === null || statamicValue.length === 0) {
-            statamicValue = {};
-          }
+        const updated = { ...current };
 
-          statamicValue[key] = newValue[key];
+        Object.keys(newValue).forEach(key => {
+          // `internal` declares every possible key with a null default, so
+          // copying it back wholesale invents keys the saved value never had.
+          if (newValue[key] === null && !(key in current)) return;
 
-          this.update(statamicValue);
+          updated[key] = newValue[key];
         });
+
+        if (JSON.stringify(updated) === JSON.stringify(current)) return;
+
+        this.update(updated);
       }
     },
     "internal.container": function(newValue, oldValue) {
